@@ -16,7 +16,7 @@ pipeline {
     GITHUB_TOKEN=credentials('498b4638-2d02-4ce5-832d-8a57d01d97ab')
     GITLAB_TOKEN=credentials('b6f0f1dd-6952-4cf6-95d1-9c06380283f0')
     GITLAB_NAMESPACE=credentials('gitlab-namespace-id')
-    BUILD_VERSION_ARG = 'WIRESHARK_RELEASE'
+    BUILD_VERSION_ARG = 'WIRESHARK_VERSION'
     LS_USER = 'linuxserver'
     LS_REPO = 'docker-wireshark'
     CONTAINER_NAME = 'wireshark'
