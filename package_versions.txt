@@ -230,8 +230,8 @@ libprocps62:3.3.12-3ubuntu1.2
 libproxy1v50.4.15-1
 libpsl50.19.1-5build1
 libpthread-stubs0-dev0.3-4
-libpulse01:11.1-1ubuntu7.5
-libpulsedsp1:11.1-1ubuntu7.5
+libpulse01:11.1-1ubuntu7.7
+libpulsedsp1:11.1-1ubuntu7.7
 libpython2.7-minimal2.7.17-1~18.04ubuntu1
 libpython2.7-stdlib2.7.17-1~18.04ubuntu1
 libpython3.6-minimal3.6.9-1~18.04ubuntu1
@@ -284,14 +284,14 @@ libssh-gcrypt-40.8.0~20170825.94fa1e38-1ubuntu0.6
 libssl1.11.1.1-1ubuntu2.1~18.04.5
 libstartup-notification00.12-5
 libstdc++68.4.0-1ubuntu1~18.04
-libsystemd0237-3ubuntu10.39
+libsystemd0237-3ubuntu10.40
 libtasn1-64.13-2
 libtdb11.3.15-2
 libthai00.1.27-2
 libthai-data0.1.27-2
 libtiff54.0.9-5ubuntu0.3
 libtinfo56.1-1ubuntu1.18.04
-libudev1237-3ubuntu10.39
+libudev1237-3ubuntu10.40
 libunistring20.9.9-0ubuntu2
 libusb-1.0-02:1.0.21-2
 libutempter01.1.6-3
@@ -388,8 +388,8 @@ perl-base5.26.1-6ubuntu0.3
 pinentry-curses1.1.0-1
 procps2:3.3.12-3ubuntu1.2
 publicsuffix20180223.1310-1
-pulseaudio1:11.1-1ubuntu7.5
-pulseaudio-utils1:11.1-1ubuntu7.5
+pulseaudio1:11.1-1ubuntu7.7
+pulseaudio-utils1:11.1-1ubuntu7.7
 python2.7.15~rc1-1
 python2.72.7.17-1~18.04ubuntu1
 python2.7-minimal2.7.17-1~18.04ubuntu1
@@ -418,7 +418,7 @@ tzdata2019c-0ubuntu0.18.04
 ubuntu-keyring2018.09.18.1~18.04.0
 ubuntu-mono16.10+18.04.20181005-0ubuntu1
 ucf3.0038
-udev237-3ubuntu10.39
+udev237-3ubuntu10.40
 util-linux2.31.1-0.4ubuntu3.6
 wireshark2.6.10-1~ubuntu18.04.0
 wireshark-common2.6.10-1~ubuntu18.04.0
