@@ -179,7 +179,7 @@ libjson-glib-1.0-01.4.2-3ubuntu0.18.04.1
 libjson-glib-1.0-common1.4.2-3ubuntu0.18.04.1
 libk5crypto31.16-2ubuntu0.1
 libkeyutils11.5.9-9.2ubuntu2
-libkmod224-1ubuntu3.4
+libkmod224-1ubuntu3.5
 libkrb5-26-heimdal7.5.0+dfsg-1
 libkrb5-31.16-2ubuntu0.1
 libkrb5support01.16-2ubuntu0.1
