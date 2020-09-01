@@ -223,7 +223,7 @@ libpango-1.0-01.40.14-1ubuntu0.1
 libpangocairo-1.0-01.40.14-1ubuntu0.1
 libpangoft2-1.0-01.40.14-1ubuntu0.1
 libpangoxft-1.0-01.40.14-1ubuntu0.1
-libpcap0.81.8.1-6ubuntu1.18.04.1
+libpcap0.81.8.1-6ubuntu1.18.04.2
 libpciaccess00.14-1
 libpcre32:8.39-9
 libpipeline11.5.0-1
