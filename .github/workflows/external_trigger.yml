@@ -18,7 +18,8 @@ jobs:
           fi
           echo "**** External trigger running off of master branch. To disable this trigger, set a Github secret named \"PAUSE_EXTERNAL_TRIGGER_WIRESHARK_MASTER\". ****"
           echo "**** Retrieving external version ****"
-          EXT_RELEASE=$(curl -sX GET http://archive.ubuntu.com/ubuntu/dists/bionic/universe/binary-amd64/Packages.gz | gunzip |grep -A 7 -m 1 'Package: wireshark' | awk -F ': ' '/Version/{print $2;exit}')
+          EXT_RELEASE=$(curl -sL "http://dl-cdn.alpinelinux.org/alpine/v3.15/community/x86_64/APKINDEX.tar.gz" | tar -xz -C /tmp \
+            && awk '/^P:'"wireshark"'$/,/V:/' /tmp/APKINDEX | sed -n 2p | sed 's/^V://')
           if [ -z "${EXT_RELEASE}" ] || [ "${EXT_RELEASE}" == "null" ]; then
             echo "**** Can't retrieve external version, exiting ****"
             FAILURE_REASON="Can't retrieve external version for wireshark branch master"
