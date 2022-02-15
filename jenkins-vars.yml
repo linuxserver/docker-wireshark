@@ -2,8 +2,7 @@
 
 # jenkins variables
 project_name: docker-wireshark
-external_type: na
-custom_version_command: "curl -sX GET http://archive.ubuntu.com/ubuntu/dists/bionic/universe/binary-amd64/Packages.gz | gunzip |grep -A 7 -m 1 'Package: wireshark' | awk -F ': ' '/Version/{print $2;exit}'"
+external_type: alpine_repo
 release_type: stable
 release_tag: latest
 ls_branch: master
@@ -15,7 +14,10 @@ repo_vars:
   - DOCKERHUB_IMAGE = 'linuxserver/wireshark'
   - DEV_DOCKERHUB_IMAGE = 'lsiodev/wireshark'
   - PR_DOCKERHUB_IMAGE = 'lspipepr/wireshark'
-  - DIST_IMAGE = 'ubuntu'
+  - DIST_IMAGE = 'alpine'
+  - DIST_TAG = '3.15'
+  - DIST_REPO = 'http://dl-cdn.alpinelinux.org/alpine/v3.15/community/'
+  - DIST_REPO_PACKAGES = 'wireshark'
   - MULTIARCH = 'true'
   - CI = 'true'
   - CI_WEB = 'true'

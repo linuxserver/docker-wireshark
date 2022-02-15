@@ -55,4 +55,5 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "14.02.22:", desc: "Rebase to Alpine." }
   - { date: "31.03.20:", desc: "Initial release." }
