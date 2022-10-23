@@ -23,6 +23,7 @@ RUN \
     'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' \
     /usr/bin/dumpcap && \
   usermod -a -G wireshark abc && \
+  sed -i 's|</applications>|  <application title="The Wireshark Network Analyzer" type="normal">\n    <maximized>yes</maximized>\n  </application>\n</applications>|' /etc/xdg/openbox/rc.xml && \
   echo "**** cleanup ****" && \
   rm -rf \
     /tmp/*
