@@ -12,8 +12,12 @@ ENV TITLE=Wireshark
 
 RUN \
   echo "**** install packages ****" && \
+  if [ -z ${WIRESHARK_VERSION+x} ]; then \
+    WIRESHARK_VERSION=$(curl -sL "http://dl-cdn.alpinelinux.org/alpine/v3.16/community/x86_64/APKINDEX.tar.gz" | tar -xz -C /tmp \
+    && awk '/^P:wireshark$/,/V:/' /tmp/APKINDEX | sed -n 2p | sed 's/^V://'); \
+  fi && \
   apk add --no-cache \
-    wireshark && \
+    wireshark==${WIRESHARK_VERSION} && \
   echo "**** permissions ****" && \
   setcap \
     'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' \
