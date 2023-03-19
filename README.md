@@ -56,21 +56,46 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf | ✅ | arm32v7-\<version tag\> |
+| armhf | ❌ | |
 
 ## Application Setup
+
+In order to dump from an interface you will need to pass `NET_ADMIN` at a minimum, optionally you can use host networking to capture from your host level device or specify a Docker network you want to capture from.
 
 The application can be accessed at:
 
 * http://yourhost:3000/
+* https://yourhost:3001/
 
-By default the user/pass is abc/abc, if you change your password or want to login manually to the GUI session for any reason use the following link:
+### Options in all KasmVNC based GUI containers
 
-* http://yourhost:3000/?login=true
+This container is based on [Docker Baseimage KasmVNC](https://github.com/linuxserver/docker-baseimage-kasmvnc) which means there are additional environment variables and run configurations to enable or disable specific functionality.
 
-In order to dump from an interface you will need to pass `NET_ADMIN` at a minimum, optionally you can use host networking to capture from your host level device or specify a Docker network you want to capture from.
+#### Optional environment variables
 
-If you do not specificy host networking you will need to map port 3000 with `-p 3000:3000`.
+| Variable | Description |
+| :----: | --- |
+| CUSTOM_PORT | Internal port the container listens on for http if it needs to be swapped from the default 3000. |
+| CUSTOM_HTTPS_PORT | Internal port the container listens on for https if it needs to be swapped from the default 3001. |
+| CUSTOM_USER | HTTP Basic auth username, abc is default. |
+| PASSWORD | HTTP Basic auth password, abc is default. If unset there will be no auth |
+| SUBFOLDER | Subfolder for the application if running a subfolder reverse proxy, need both slashes IE `/subfolder/` |
+| TITLE | The page title displayed on the web browser, default "KasmVNC Client". |
+| FM_HOME | This is the home directory (landing) for the file manager, default "/config". |
+| START_DOCKER | If set to false a container with privilege will not automatically start the DinD Docker setup. |
+| DRINODE | If mounting in /dev/dri for [DRI3 GPU Acceleration](https://www.kasmweb.com/kasmvnc/docs/master/gpu_acceleration.html) allows you to specify the device to use IE `/dev/dri/renderD128` |
+
+#### Optional run configurations
+
+| Variable | Description |
+| :----: | --- |
+| `--privileged` | Will start a Docker in Docker (DinD) setup inside the container to use docker in an isolated environment. For increased performance mount the Docker directory inside the container to the host IE `-v /home/user/docker-data:/var/lib/docker`. |
+| `-v /var/run/docker.sock:/var/run/docker.sock` | Mount in the host level Docker socket to either interact with it via CLI or use Docker enabled applications. |
+| `--device /dev/dri:/dev/dri` | Mount a GPU into the container, this can be used in conjunction with the `DRINODE` environment variable to leverage a host video card for GPU accelerated appplications. Only **Open Source** drivers are supported IE (Intel,AMDGPU,Radeon,ATI,Nouveau) |
+
+### Lossless mode
+
+This container is capable of delivering a true lossless image at a high framerate to your web browser by changing the Stream Quality preset to "Lossless", more information [here](https://www.kasmweb.com/docs/latest/how_to/lossless.html#technical-background). In order to use this mode from a non localhost endpoint the HTTPS port on 3001 needs to be used. If using a reverse proxy to port 3000 specific headers will need to be set as outlined [here](https://github.com/linuxserver/docker-baseimage-kasmvnc#lossless).
 
 ## Usage
 
@@ -98,6 +123,7 @@ services:
       - /path/to/config:/config
     ports:
       - 3000:3000 #optional
+      - 3001:3001 #optional
     restart: unless-stopped
 ```
 
@@ -113,6 +139,7 @@ docker run -d \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -p 3000:3000 `#optional` \
+  -p 3001:3001 `#optional` \
   -v /path/to/config:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/wireshark:latest
@@ -127,6 +154,7 @@ Container images are configured using parameters passed at runtime (such as thos
 | :----: | --- |
 | `--net=host` | Use Host Networking |
 | `-p 3000` | WireShark desktop gui, only use this if you are not using host mode and sniffing Docker network traffic. |
+| `-p 3001` | WireShark desktop gui HTTPS, only use this if you are not using host mode and sniffing Docker network traffic. |
 | `-e PUID=1000` | for UserID - see below for explanation |
 | `-e PGID=1000` | for GroupID - see below for explanation |
 | `-e TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
@@ -246,6 +274,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **18.03.23:** - Rebase to KasmVNC base image.
 * **23.10.22:** - Rebase to Alpine 3.16, migrate to s6v3.
 * **14.02.22:** - Rebase to Alpine.
 * **31.03.20:** - Initial release.
