@@ -11,6 +11,10 @@ LABEL maintainer="thelamer"
 ENV TITLE=Wireshark
 
 RUN \
+  echo "**** add icon ****" && \
+  curl -o \
+    /kclient/public/icon.png \
+    https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/wireshark-icon.png && \
   echo "**** install packages ****" && \
   if [ -z ${WIRESHARK_VERSION+x} ]; then \
     WIRESHARK_VERSION=$(curl -sL "http://dl-cdn.alpinelinux.org/alpine/v3.19/community/x86_64/APKINDEX.tar.gz" | tar -xz -C /tmp \
@@ -24,7 +28,6 @@ RUN \
     'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' \
     /usr/bin/dumpcap && \
   usermod -a -G wireshark abc && \
-  sed -i 's|</applications>|  <application title="The Wireshark Network Analyzer" type="normal">\n    <maximized>yes</maximized>\n  </application>\n</applications>|' /etc/xdg/openbox/rc.xml && \
   echo "**** cleanup ****" && \
   rm -rf \
     /tmp/*
