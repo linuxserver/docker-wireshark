@@ -944,8 +944,8 @@ wayland-libs-cursor                                                           1.
 wayland-libs-egl                                                              1.22.0-r4                                    apk                          
 wayland-libs-server                                                           1.22.0-r4                                    apk                          
 webrtc-audio-processing                                                       0.3.1-r6                                     apk                          
-wireshark                                                                     4.0.14-r0                                    apk                          
-wireshark-common                                                              4.0.14-r0                                    apk                          
+wireshark                                                                     4.0.15-r0                                    apk                          
+wireshark-common                                                              4.0.15-r0                                    apk                          
 ws                                                                            8.11.0                                       npm                          
 wyz                                                                           0.5.1                                        rust-crate                   
 x264-libs                                                                     0.164_git20231001-r0                         apk                          
