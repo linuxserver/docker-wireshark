@@ -340,6 +340,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **23.05.24:** - Rebase to Alpine 3.20.
 * **10.02.24:** - Update Readme with new env vars and ingest proper PWA icon.
 * **02.01.24:** - Rebase to Alpine 3.19.
 * **13.05.23:** - Rebase to Alpine 3.18.

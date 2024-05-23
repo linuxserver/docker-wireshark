@@ -25,8 +25,8 @@ pipeline {
     DEV_DOCKERHUB_IMAGE = 'lsiodev/wireshark'
     PR_DOCKERHUB_IMAGE = 'lspipepr/wireshark'
     DIST_IMAGE = 'alpine'
-    DIST_TAG = '3.19'
-    DIST_REPO = 'http://dl-cdn.alpinelinux.org/alpine/v3.19/community/'
+    DIST_TAG = '3.20'
+    DIST_REPO = 'http://dl-cdn.alpinelinux.org/alpine/v3.20/community/'
     DIST_REPO_PACKAGES = 'wireshark'
     MULTIARCH = 'true'
     CI = 'true'
@@ -529,6 +529,7 @@ pipeline {
           --label \"org.opencontainers.image.title=Wireshark\" \
           --label \"org.opencontainers.image.description=[Wireshark](https://www.wireshark.org/) is the world’s foremost and widely-used network protocol analyzer. It lets you see what’s happening on your network at a microscopic level and is the de facto (and often de jure) standard across many commercial and non-profit enterprises, government agencies, and educational institutions. Wireshark development thrives thanks to the volunteer contributions of networking experts around the globe and is the continuation of a project started by Gerald Combs in 1998. \" \
           --no-cache --pull -t ${IMAGE}:${META_TAG} --platform=linux/amd64 \
+          --provenance=false --sbom=false \
           --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${VERSION_TAG}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
       }
     }
@@ -560,6 +561,7 @@ pipeline {
               --label \"org.opencontainers.image.title=Wireshark\" \
               --label \"org.opencontainers.image.description=[Wireshark](https://www.wireshark.org/) is the world’s foremost and widely-used network protocol analyzer. It lets you see what’s happening on your network at a microscopic level and is the de facto (and often de jure) standard across many commercial and non-profit enterprises, government agencies, and educational institutions. Wireshark development thrives thanks to the volunteer contributions of networking experts around the globe and is the continuation of a project started by Gerald Combs in 1998. \" \
               --no-cache --pull -t ${IMAGE}:amd64-${META_TAG} --platform=linux/amd64 \
+              --provenance=false --sbom=false \
               --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${VERSION_TAG}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
           }
         }
@@ -588,6 +590,7 @@ pipeline {
               --label \"org.opencontainers.image.title=Wireshark\" \
               --label \"org.opencontainers.image.description=[Wireshark](https://www.wireshark.org/) is the world’s foremost and widely-used network protocol analyzer. It lets you see what’s happening on your network at a microscopic level and is the de facto (and often de jure) standard across many commercial and non-profit enterprises, government agencies, and educational institutions. Wireshark development thrives thanks to the volunteer contributions of networking experts around the globe and is the continuation of a project started by Gerald Combs in 1998. \" \
               --no-cache --pull -f Dockerfile.aarch64 -t ${IMAGE}:arm64v8-${META_TAG} --platform=linux/arm64 \
+              --provenance=false --sbom=false \
               --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${VERSION_TAG}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
             sh "docker tag ${IMAGE}:arm64v8-${META_TAG} ghcr.io/linuxserver/lsiodev-buildcache:arm64v8-${COMMIT_SHA}-${BUILD_NUMBER}"
             retry(5) {
