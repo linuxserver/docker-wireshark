@@ -579,7 +579,7 @@ pipeline {
           --label \"org.opencontainers.image.title=Wireshark\" \
           --label \"org.opencontainers.image.description=[Wireshark](https://www.wireshark.org/) is the world’s foremost and widely-used network protocol analyzer. It lets you see what’s happening on your network at a microscopic level and is the de facto (and often de jure) standard across many commercial and non-profit enterprises, government agencies, and educational institutions. Wireshark development thrives thanks to the volunteer contributions of networking experts around the globe and is the continuation of a project started by Gerald Combs in 1998. \" \
           --no-cache --pull -t ${IMAGE}:${META_TAG} --platform=linux/amd64 \
-          --provenance=false --sbom=false --builder=container --load \
+          --provenance=true --sbom=true --builder=container --load \
           --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${VERSION_TAG}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
         sh '''#! /bin/bash
               set -e
@@ -608,7 +608,9 @@ pipeline {
                       for i in "${CACHE[@]}"; do
                         docker push ${i}:amd64-${COMMIT_SHA}-${BUILD_NUMBER} &
                       done
-                      wait
+                      for p in $(jobs -p); do
+                        wait "$p" || { echo "job $p failed" >&2; exit 1; }
+                      done
                     fi
                 '''
           }
@@ -643,7 +645,7 @@ pipeline {
               --label \"org.opencontainers.image.title=Wireshark\" \
               --label \"org.opencontainers.image.description=[Wireshark](https://www.wireshark.org/) is the world’s foremost and widely-used network protocol analyzer. It lets you see what’s happening on your network at a microscopic level and is the de facto (and often de jure) standard across many commercial and non-profit enterprises, government agencies, and educational institutions. Wireshark development thrives thanks to the volunteer contributions of networking experts around the globe and is the continuation of a project started by Gerald Combs in 1998. \" \
               --no-cache --pull -t ${IMAGE}:amd64-${META_TAG} --platform=linux/amd64 \
-              --provenance=false --sbom=false --builder=container --load \
+              --provenance=true --sbom=true --builder=container --load \
               --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${VERSION_TAG}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
             sh '''#! /bin/bash
                   set -e
@@ -672,7 +674,9 @@ pipeline {
                           for i in "${CACHE[@]}"; do
                             docker push ${i}:amd64-${COMMIT_SHA}-${BUILD_NUMBER} &
                           done
-                          wait
+                          for p in $(jobs -p); do
+                            wait "$p" || { echo "job $p failed" >&2; exit 1; }
+                          done
                         fi
                     '''
               }
@@ -700,7 +704,7 @@ pipeline {
               --label \"org.opencontainers.image.title=Wireshark\" \
               --label \"org.opencontainers.image.description=[Wireshark](https://www.wireshark.org/) is the world’s foremost and widely-used network protocol analyzer. It lets you see what’s happening on your network at a microscopic level and is the de facto (and often de jure) standard across many commercial and non-profit enterprises, government agencies, and educational institutions. Wireshark development thrives thanks to the volunteer contributions of networking experts around the globe and is the continuation of a project started by Gerald Combs in 1998. \" \
               --no-cache --pull -f Dockerfile.aarch64 -t ${IMAGE}:arm64v8-${META_TAG} --platform=linux/arm64 \
-              --provenance=false --sbom=false --builder=container --load \
+              --provenance=true --sbom=true --builder=container --load \
               --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${VERSION_TAG}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
             sh '''#! /bin/bash
                   set -e
@@ -729,7 +733,9 @@ pipeline {
                           for i in "${CACHE[@]}"; do
                             docker push ${i}:arm64v8-${COMMIT_SHA}-${BUILD_NUMBER} &
                           done
-                          wait
+                          for p in $(jobs -p); do
+                            wait "$p" || { echo "job $p failed" >&2; exit 1; }
+                          done
                         fi
                     '''
               }
@@ -972,7 +978,7 @@ pipeline {
               echo '{"tag_name":"'${META_TAG}'",\
                      "target_commitish": "master",\
                      "name": "'${META_TAG}'",\
-                     "body": "**CI Report:**\\n\\n'${CI_URL:-N/A}'\\n\\n**LinuxServer Changes:**\\n\\n'${LS_RELEASE_NOTES}'\\n\\n**Repo Changes:**\\n\\n' > start
+                     "body": "**CI Report:**\\n\\n'${CI_URL:-N/A}'\\n\\n**LinuxServer Changes:**\\n\\n'${LS_RELEASE_NOTES}'\\n\\n**Remote Changes:**\\n\\n' > start
               printf '","draft": false,"prerelease": false}' >> releasebody.json
               paste -d'\\0' start releasebody.json > releasebody.json.done
               curl -H "Authorization: token ${GITHUB_TOKEN}" -X POST https://api.github.com/repos/${LS_USER}/${LS_REPO}/releases -d @releasebody.json.done'''
