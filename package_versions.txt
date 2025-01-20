@@ -5,7 +5,7 @@ NAME                                                                          VE
 @socket.io/component-emitter                                                  UNKNOWN                                 npm        (+1 duplicate)   
 @types/cookie                                                                 0.4.1                                   npm                         
 @types/cors                                                                   2.8.17                                  npm                         
-@types/node                                                                   22.10.5                                 npm                         
+@types/node                                                                   22.10.7                                 npm                         
 accepts                                                                       1.3.8                                   npm                         
 acl-libs                                                                      2.3.2-r1                                apk                         
 ada-libs                                                                      2.9.2-r1                                apk                         
@@ -19,8 +19,8 @@ aom-libs                                                                      3.
 apk-tools                                                                     2.14.6-r2                               apk                         
 array-flatten                                                                 1.1.1                                   npm                         
 async                                                                         3.2.6                                   npm                         
-at-spi2-core                                                                  2.54.0-r0                               apk                         
-at-spi2-core-lang                                                             2.54.0-r0                               apk                         
+at-spi2-core                                                                  2.54.1-r0                               apk                         
+at-spi2-core-lang                                                             2.54.1-r0                               apk                         
 avahi-libs                                                                    0.8-r19                                 apk                         
 balanced-match                                                                1.0.2                                   npm                         
 base64id                                                                      2.0.0                                   npm                         
@@ -30,8 +30,8 @@ body-parser                                                                   1.
 brace-expansion                                                               1.1.11                                  npm                         
 brace-expansion                                                               2.0.1                                   npm                         
 brotli-libs                                                                   1.1.0-r2                                apk                         
-busybox                                                                       1.37.0-r9                               apk                         
-busybox-binsh                                                                 1.37.0-r9                               apk                         
+busybox                                                                       1.37.0-r12                              apk                         
+busybox-binsh                                                                 1.37.0-r12                              apk                         
 bytes                                                                         3.1.2                                   npm                         
 c-ares                                                                        1.34.3-r0                               apk                         
 ca-certificates                                                               20241121-r1                             apk                         
@@ -97,7 +97,7 @@ engine.io-parser                                                              5.
 engine.io-parser                                                              UNKNOWN                                 npm        (+1 duplicate)   
 es-define-property                                                            1.0.1                                   npm                         
 es-errors                                                                     1.3.0                                   npm                         
-es-object-atoms                                                               1.0.0                                   npm                         
+es-object-atoms                                                               1.1.1                                   npm                         
 escape-html                                                                   1.0.3                                   npm                         
 etag                                                                          1.8.1                                   npm                         
 eudev-libs                                                                    3.2.14-r5                               apk                         
@@ -587,11 +587,11 @@ lcms2                                                                         2.
 libSvtAv1Enc                                                                  2.2.1-r0                                apk                         
 libass                                                                        0.17.3-r0                               apk                         
 libasyncns                                                                    0.8-r4                                  apk                         
-libatk-1.0                                                                    2.54.0-r0                               apk                         
-libatk-bridge-2.0                                                             2.54.0-r0                               apk                         
+libatk-1.0                                                                    2.54.1-r0                               apk                         
+libatk-bridge-2.0                                                             2.54.1-r0                               apk                         
 libattr                                                                       2.5.2-r2                                apk                         
 libb2                                                                         0.98.1-r3                               apk                         
-libblkid                                                                      2.40.2-r4                               apk                         
+libblkid                                                                      2.40.4-r0                               apk                         
 libbluray                                                                     1.3.4-r1                                apk                         
 libbsd                                                                        0.12.2-r0                               apk                         
 libbz2                                                                        1.0.8-r6                                apk                         
@@ -632,7 +632,7 @@ libmagic                                                                      5.
 libmaxminddb-libs                                                             1.9.1-r0                                apk                         
 libmd                                                                         1.1.0-r0                                apk                         
 libmnl                                                                        1.0.5-r2                                apk                         
-libmount                                                                      2.40.2-r4                               apk                         
+libmount                                                                      2.40.4-r0                               apk                         
 libncursesw                                                                   6.5_p20241006-r3                        apk                         
 libnftnl                                                                      1.2.8-r0                                apk                         
 libnl3                                                                        3.11.0-r0                               apk                         
@@ -668,7 +668,7 @@ libucontext                                                                   1.
 libunibreak                                                                   6.1-r0                                  apk                         
 libunistring                                                                  1.2-r0                                  apk                         
 libusb                                                                        1.0.27-r0                               apk                         
-libuuid                                                                       2.40.2-r4                               apk                         
+libuuid                                                                       2.40.4-r0                               apk                         
 libva                                                                         2.22.0-r1                               apk                         
 libva-intel-driver                                                            2.4.1-r2                                apk                         
 libvdpau                                                                      1.5-r4                                  apk                         
@@ -716,7 +716,7 @@ lua5.4-libs                                                                   5.
 lz4-libs                                                                      1.10.0-r0                               apk                         
 math-intrinsics                                                               1.1.0                                   npm                         
 mbedtls                                                                       3.6.2-r0                                apk                         
-mcookie                                                                       2.40.2-r4                               apk                         
+mcookie                                                                       2.40.4-r0                               apk                         
 media-typer                                                                   0.3.0                                   npm                         
 merge-descriptors                                                             1.0.3                                   npm                         
 mesa                                                                          24.2.8-r0                               apk                         
@@ -783,7 +783,7 @@ path-to-regexp                                                                0.
 pciutils-libs                                                                 3.13.0-r1                               apk                         
 pcre                                                                          8.45-r3                                 apk                         
 pcre2                                                                         10.43-r0                                apk                         
-perl                                                                          5.40.0-r3                               apk                         
+perl                                                                          5.40.1-r0                               apk                         
 perl-b-hooks-endofscope                                                       0.28-r0                                 apk                         
 perl-class-data-inheritable                                                   0.10-r0                                 apk                         
 perl-class-inspector                                                          1.36-r3                                 apk                         
@@ -886,7 +886,7 @@ speexdsp                                                                      1.
 spirv-tools                                                                   1.3.290.0-r0                            apk                         
 sqlite-libs                                                                   3.47.1-r0                               apk                         
 sratom                                                                        0.6.16-r0                               apk                         
-ssl_client                                                                    1.37.0-r9                               apk                         
+ssl_client                                                                    1.37.0-r12                              apk                         
 startup-notification                                                          0.12-r8                                 apk                         
 statuses                                                                      2.0.1                                   npm                         
 stdlib                                                                        go1.23.2                                go-module  (+4 duplicates)  
