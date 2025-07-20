@@ -1,4 +1,4 @@
-FROM ghcr.io/linuxserver/baseimage-kasmvnc:alpine321
+FROM ghcr.io/linuxserver/baseimage-selkies:alpine322
 
 # set version label
 ARG BUILD_DATE
@@ -13,11 +13,11 @@ ENV TITLE=Wireshark
 RUN \
   echo "**** add icon ****" && \
   curl -o \
-    /kclient/public/icon.png \
+    /usr/share/selkies/www/icon.png \
     https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/wireshark-icon.png && \
   echo "**** install packages ****" && \
   if [ -z ${WIRESHARK_VERSION+x} ]; then \
-    WIRESHARK_VERSION=$(curl -sL "http://dl-cdn.alpinelinux.org/alpine/v3.21/community/x86_64/APKINDEX.tar.gz" | tar -xz -C /tmp \
+    WIRESHARK_VERSION=$(curl -sL "http://dl-cdn.alpinelinux.org/alpine/v3.22/community/x86_64/APKINDEX.tar.gz" | tar -xz -C /tmp \
     && awk '/^P:wireshark$/,/V:/' /tmp/APKINDEX | sed -n 2p | sed 's/^V://'); \
   fi && \
   apk add --no-cache \
