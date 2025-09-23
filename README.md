@@ -80,6 +80,8 @@ By default, this container has no authentication. The optional `CUSTOM_USER` and
 
 The web interface includes a terminal with passwordless `sudo` access. Any user with access to the GUI can gain root control within the container, install arbitrary software, and probe your local network.
 
+While not generally recommended, certain legacy environments specifically those with older hardware or outdated Linux distributions may require the deactivation of the standard seccomp profile to get containerized desktop software to run. This can be achieved by utilizing the `--security-opt seccomp=unconfined` parameter. It is critical to use this option only when absolutely necessary as it disables a key security layer of Docker, elevating the potential for container escape vulnerabilities.
+
 ### Options in all Selkies-based GUI containers
 
 This container is based on [Docker Baseimage Selkies](https://github.com/linuxserver/docker-baseimage-selkies), which provides the following environment variables and run configurations to customize its functionality.
@@ -189,8 +191,6 @@ services:
     container_name: wireshark
     cap_add:
       - NET_ADMIN
-    security_opt:
-      - seccomp:unconfined #optional
     network_mode: host
     environment:
       - PUID=1000
@@ -201,6 +201,7 @@ services:
     ports:
       - 3000:3000 #optional
       - 3001:3001 #optional
+    shm_size: "1gb"
     restart: unless-stopped
 ```
 
@@ -211,13 +212,13 @@ docker run -d \
   --name=wireshark \
   --net=host \
   --cap-add=NET_ADMIN \
-  --security-opt seccomp=unconfined `#optional` \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Etc/UTC \
   -p 3000:3000 `#optional` \
   -p 3001:3001 `#optional` \
   -v /path/to/wireshark/config:/config \
+  --shm-size="1gb" \
   --restart unless-stopped \
   lscr.io/linuxserver/wireshark:latest
 ```
@@ -235,7 +236,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `-e PGID=1000` | for GroupID - see below for explanation |
 | `-e TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `-v /config` | Users home directory in the container, stores program settings and potentially dump files. |
-| `--security-opt seccomp=unconfined` | For Docker Engine only, many modern gui apps need this to function on older hosts as syscalls are unknown to Docker. |
+| `--shm-size=` | Recommended for all desktop images. |
 | `--cap-add=NET_ADMIN` | Required to allow packet capture. |
 
 ### Portainer notice
