@@ -105,7 +105,7 @@ init_diagram: |
     svc-xsettingsd -> legacy-services
   }
   Base Images: {
-    "baseimage-selkies:alpine322" <- "baseimage-alpine:3.22"
+    "baseimage-selkies:alpine323" <- "baseimage-alpine:3.23"
   }
   "wireshark:latest" <- Base Images
 # changelog
