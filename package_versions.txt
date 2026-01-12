@@ -23,9 +23,9 @@ aom-libs                                                                      3.
 apk-tools                                                                     3.0.3-r1                                apk                          
 arg_enum_proc_macro                                                           0.3.4                                   rust-crate                   
 arrayvec                                                                      0.7.4                                   rust-crate                   
-at-spi2-core                                                                  2.58.2-r0                               apk                          
-at-spi2-core-lang                                                             2.58.2-r0                               apk                          
-at-spi2-core-libs                                                             2.58.2-r0                               apk                          
+at-spi2-core                                                                  2.58.3-r0                               apk                          
+at-spi2-core-lang                                                             2.58.3-r0                               apk                          
+at-spi2-core-libs                                                             2.58.3-r0                               apk                          
 attrs                                                                         25.4.0                                  python                       
 autocommand                                                                   2.2.2                                   python                       
 av                                                                            14.4.0                                  python                       
@@ -637,8 +637,8 @@ lcms2                                                                         2.
 libapk                                                                        3.0.3-r1                                apk                          
 libarchive                                                                    3.8.4-r0                                apk                          
 libasyncns                                                                    0.8-r4                                  apk                          
-libatk-1.0                                                                    2.58.2-r0                               apk                          
-libatk-bridge-2.0                                                             2.58.2-r0                               apk                          
+libatk-1.0                                                                    2.58.3-r0                               apk                          
+libatk-bridge-2.0                                                             2.58.3-r0                               apk                          
 libattr                                                                       2.5.2-r2                                apk                          
 libb2                                                                         0.98.1-r3                               apk                          
 libblkid                                                                      2.41.2-r0                               apk                          
@@ -839,7 +839,7 @@ pcmflux                                                                       1.
 pcre2                                                                         10.47-r0                                apk                          
 pillow                                                                        12.1.0                                  python                       
 pip                                                                           25.0.1                                  python                       
-pixelflux                                                                     1.5.3                                   python                       
+pixelflux                                                                     1.5.4                                   python                       
 pixman                                                                        0.46.4-r0                               apk                          
 pkgconf                                                                       2.5.1-r0                                apk                          
 platformdirs                                                                  4.2.2                                   python                       
