@@ -106,7 +106,9 @@ To use hardware acceleration in Wayland mode, we distinguish between the card us
 * `DRINODE`: The path to the GPU used for **Rendering** (EGL).
 * `DRI_NODE`: The path to the GPU used for **Encoding** (VAAPI/NVENC).
 
-If both variables point to the same device, the container will automatically enable **Zero Copy** encoding, significantly reducing CPU usage and latency.
+If both variables point to the same device, the container will automatically enable **Zero Copy** encoding, significantly reducing CPU usage and latency. If they are set to different devices one will be used for **Rendering** and one for **Encoding** with a cpu readback.
+
+You can also use the environment variable `AUTO_GPU=true`, with this set the first card detected in the container (IE `/dev/dri/renderD128`) will be used and configured for **Zero Copy**.
 
 ##### Intel & AMD (Open Source Drivers)
 
@@ -121,8 +123,6 @@ For Intel and AMD GPUs.
       - DRINODE=/dev/dri/renderD128
       - DRI_NODE=/dev/dri/renderD128
 ```
-
-
 ### SealSkin Compatibility
 
 This container is compatible with [SealSkin](https://sealskin.app).
@@ -143,12 +143,14 @@ This container is based on [Docker Baseimage Selkies](https://github.com/linuxse
 | Variable | Description |
 | :----: | --- |
 | PIXELFLUX_WAYLAND | **Experimental** If set to true the container will initialize in Wayland mode running [Smithay](https://github.com/Smithay/smithay) and Labwc while enabling zero copy encoding with a GPU |
+| SELKIES_DESKTOP | If set to true and in Wayland mode, a simple panel will be initialized with labwc |
 | CUSTOM_PORT | Internal port the container listens on for http if it needs to be swapped from the default `3000` |
 | CUSTOM_HTTPS_PORT | Internal port the container listens on for https if it needs to be swapped from the default `3001` |
 | CUSTOM_WS_PORT | Internal port the container listens on for websockets if it needs to be swapped from the default 8082 |
 | CUSTOM_USER | HTTP Basic auth username, abc is default. |
 | DRI_NODE | **Encoding GPU**: Enable VAAPI/NVENC stream encoding and use the specified device IE `/dev/dri/renderD128` |
 | DRINODE | **Rendering GPU**: Specify which GPU to use for EGL/3D acceleration IE `/dev/dri/renderD129` |
+| AUTO_GPU | If set to true and in Wayland mode, we will automatically use the first GPU available for encoding and rendering IE `/dev/dri/renderD128` |
 | PASSWORD | HTTP Basic auth password, abc is default. If unset there will be no auth |
 | SUBFOLDER | Subfolder for the application if running a subfolder reverse proxy, need both slashes IE `/subfolder/` |
 | TITLE | The page title displayed on the web browser, default "Selkies" |
@@ -589,6 +591,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **04.04.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **28.12.25:** - Add Wayland init logic, rebase to Alpine 3.23.
 * **12.07.25:** - Rebase to Selkies and Alpine 3.22, HTTPS IS NOW REQUIRED.
 * **06.12.24:** - Rebase to Alpine 3.21.
