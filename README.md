@@ -599,6 +599,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **10.06.26:** - Rebase to Alpine 3.24.
 * **04.04.26:** - Make Wayland default disable with PIXELFLUX_WAYLAND=false.
 * **28.12.25:** - Add Wayland init logic, rebase to Alpine 3.23.
 * **12.07.25:** - Rebase to Selkies and Alpine 3.22, HTTPS IS NOW REQUIRED.
